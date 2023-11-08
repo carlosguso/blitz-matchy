@@ -1,0 +1,130 @@
+const defaultGame = [
+    {
+        "question": "Match the right pair of adjectives",
+        "image": "/test_1.jpeg",
+        "options": ["disapointed/disappointing", "amused/amuzing","embarrassed/embarrassing", "fascinated/fascinating"],
+        "answer": "amused/amuzing",
+    },
+    {
+        "question": "Match the right pair of adjectives",
+        "image": "/test_2.jpeg",
+        "options": ["disapointed/disappointing", "amused/amuzing","embarrassed/embarrassing", "depressed/depresing"],
+        "answer": "disapointed/disappointing",
+    },
+    {
+        "question": "Match the right pair of adjectives",
+        "image": "/test_3.jpeg",
+        "options": ["annoyed/annoying", "depressed/depresing","amazed/amazing","excited/exciting"],
+        "answer": "excited/exciting",
+    },
+    {
+        "question": "Match the right pair of adjectives",
+        "image": "/test_4.jpeg",
+        "options": ["amazed/amazing", "amused/amuzing","shocked/shocking", "fascinated/fascinating"],
+        "answer": "fascinated/fascinating",
+    },
+    {
+        "question": "Match the right pair of adjectives",
+        "image": "/test_5.jpeg",
+        "options": ["terrified/terrifying", "amused/amuzing","annoyed/annoying", "excited/exciting"],
+        "answer": "annoyed/annoying",
+    },
+    {
+        "question": "Match the right pair of adjectives",
+        "image": "/test_6.jpeg",
+        "options": ["disapointed/disappointing", "depressed/depresing","terrified/terrifying","shocked/shocking"],
+        "answer": "depressed/depresing",
+    },
+    {
+        "question": "Match the right pair of adjectives",
+        "image": "/test_7.jpeg",
+        "options": ["amazed/amazing", "amused/amuzing","depressed/depresing", "fascinated/fascinating"],
+        "answer": "amazed/amazing",
+    },
+    {
+        "question": "Match the right pair of adjectives",
+        "image": "/test_8.jpeg",
+        "options": [ "annoyed/annoying","terrified/terrifying", "amused/amuzing","shocked/shocking"],
+        "answer": "shocked/shocking",
+    },
+    {
+        "question": "Match the right pair of adjectives",
+        "image": "/test_9.jpeg",
+        "options": ["disapointed/disappointing", "amused/amuzing","embarrassed/embarrassing", "terrified/terrifying"],
+        "answer": "terrified/terrifying",
+    },
+    {
+        "question": "Match the right pair of adjectives",
+        "image": "/test_10.jpeg",
+        "options": ["disapointed/disappointing", "amused/amuzing","embarrassed/embarrassing", "fascinated/fascinating"],
+        "answer": "embarrassed/embarrassing",
+    },
+    {
+        "question": "Complete the compound Noun: Art _________",
+        "image": "/test_11.jpeg",
+        "options": ["Path", "Gallery","Town", "Sports"],
+        "answer": "Gallery",
+    },
+    {
+        "question": "Complete the compound Noun: Bike _________",
+        "image": "/test_12.jpeg",
+        "options": ["Path", "Department","Parking", "Night"],
+        "answer": "Path",
+    },
+    {
+        "question": "Complete the compound Noun: _________ Mall",
+        "image": "/test_13.jpeg",
+        "options": ["Department", "Gallery","Town", "Shopping"],
+        "answer": "Shopping",
+    },
+    {
+        "question": "Complete the compound Noun: _________ Club",
+        "image": "/test_14.jpeg",
+        "options": ["Night", "Pedestrian","Town", "Life"],
+        "answer": "Night",
+    },
+    {
+        "question": "Complete the compound Noun: _________ Area",
+        "image": "/test_15.jpeg",
+        "options": ["Path", "Transportation","Pedestrian", "Jam"],
+        "answer": "Pedestrian",
+    },
+    {
+        "question": "Complete the compound Noun: Traffic _________",
+        "image": "/test_16.jpeg",
+        "options": ["Path", "Parking","Jam", "Transportation"],
+        "answer": "Jam",
+    },
+    {
+        "question": "Complete the compound Noun: _________ Store",
+        "image": "/test_17.jpeg",
+        "options": ["Night", "Jam","Town", "Department"],
+        "answer": "Department",
+    },
+    {
+        "question": "Complete the compound Noun: _________ Center",
+        "image": "/test_18.jpeg",
+        "options": ["Pedestrian", "Gallery","Shopping", "Sports"],
+        "answer": "Sports",
+    },
+    {
+        "question": "Complete the compound Noun: Public _________",
+        "image": "/test_19.jpeg",
+        "options": ["Path", "Jam","Parking", "Transportation"],
+        "answer": "Transportation",
+    },
+    {
+        "question": "Complete the compound Noun: Down _________",
+        "image": "/test_20.jpeg",
+        "options": ["Pedestrian", "Night","Town", "Department"],
+        "answer": "Town",
+    },
+    {
+        "question": "Complete the compound Noun: Night _________",
+        "image": "/test_21.jpeg",
+        "options": ["Life", "Night","Path", "Jam"],
+        "answer": "Life",
+    },
+]
+
+export default defaultGame;
