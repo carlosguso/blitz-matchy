@@ -7,6 +7,19 @@ import { useGameStore } from '@/store';
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
+let preLoadedImg = undefined;
+
+const preloadImg = (url: string) => {
+  console.log("Preloading: ", url)
+  if (url) {
+    const img = new window.Image();
+    img.src = url;
+    preLoadedImg = img;
+  } else {
+    preLoadedImg = undefined;
+  }
+}
+
 export default function Home() {
   const [game, setGame] = useState<GameOption[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -37,11 +50,17 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
+    preloadImg(game[0]?.image)
     setCurrentQuestion(0);
   }, [game])
 
+  useEffect(() => {
+    preloadImg(game[currentQuestion+1]?.image)
+  }, [currentQuestion, user])
+
 
   const updateQuestionResults = (result: Boolean) => {
+    //preloadImg(game[currentQuestion+1].image);
     setCurrentQuestion(currentQuestion+1)
     if (result)
       setResults({...results, correct: results.correct + 1})
