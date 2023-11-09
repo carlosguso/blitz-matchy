@@ -23,19 +23,22 @@ export default function Landing(props: LandingProps) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="fname">UserName:</label><br/>
-            {error && <p className="text-red-300">Error: {error}</p>}
-            <input 
-            className="text-black" 
-            type="text" 
-            id="username" 
-            name="fname" 
-            value={user} 
-            onChange={(e) => setUser(e.target.value)}
-            /><br/>
-            <button type="submit">Submit</button>
-        </form>
+        <div className="flex flex-col justify-center items-center my-auto">
+            <h1 className="w-full">VOCABULARY MATCHING GAME</h1>
+            <form className="w-full mt-8" onSubmit={handleSubmit}>
+                <label htmlFor="fname" className="w-full">Username:</label><br/>
+                {error && <p className="text-red-300 w-full">Error: {error}</p>}
+                <input 
+                className="text-black w-full" 
+                type="text" 
+                id="username" 
+                name="fname" 
+                value={user} 
+                onChange={(e) => setUser(e.target.value)}
+                /><br/>
+                <button type="submit" className="border-2 border-white rounded-sm mt-2 text-black w-full bg-white hover:bg-slate-100">Start Game</button>
+            </form>
+        </div>
     )
 
 }
