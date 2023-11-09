@@ -42,7 +42,7 @@ export default function Question(props: Question) {
             <img
             src={props.image}
             alt={`Image highly related to the question: ${props.question}`}
-            className='border-2 border-red-700 w-40 h-auto'
+            className='border-4 rounded-md border-white w-full h-auto'
             />
              <h2 className='mt-2'>
                 {props.question}
