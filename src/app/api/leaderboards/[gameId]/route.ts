@@ -20,7 +20,7 @@ export async function GET(
         await connectDB()
         const userScores = await LeaderBoard.find({ gameId });
         if (userScores) 
-          return Response.json(userScores);
+          return Response.json(userScores.map((elem) => elem.toJSON()));
         return Response.json({"error": "Leaderbord not found"}, { status: 404})
     } catch (e) {
       return Response.json({"error": String(e)}, {status: 500})
@@ -63,12 +63,12 @@ export async function POST(
       if (hasNewBestScorePoints || hasNewBestScoreSeconds)
         await userScore.save()
 
-      return Response.json({userScore})
+      return Response.json(userScore.toJSON())
     }
 
     const newUserScore = new LeaderBoard({ user, bestScorePoints, bestScoreSeconds, gameId})
     await newUserScore.save()
-    return Response.json(newUserScore)
+    return Response.json(newUserScore.toJSON())
   } catch (e) {
     return Response.json({"error": String(e)}, {status: 500})
   }
