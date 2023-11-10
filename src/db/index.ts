@@ -7,7 +7,8 @@ export default async function connectDB() {
     await mongoose.connect(url);
   } catch (err) {
     console.error(err instanceof Error && err.message);
-    process.exit(1);
+    throw err;
+    //process.exit(1);
   }
   const dbConnection = mongoose.connection;
   dbConnection.once("open", (_) => {

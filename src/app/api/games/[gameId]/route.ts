@@ -14,6 +14,6 @@ export async function GET(
       return Response.json({"error": "Game not found"}, {status: 404})
     } catch (e) {
       console.error("An error happened on GET /api/games/<gameId> execution: ", e)
-      return Response.json({"error": String(e)}, {status: 500})
+      return Response.json({"error": String(e), "var": process.env.MONGODB_URI}, {status: 500})
     }
   }
