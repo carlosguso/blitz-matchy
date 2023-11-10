@@ -6,7 +6,7 @@ interface ILeaderboard {
     bestScoreSeconds: number;
     bestScorePoints: number;
 }
-const LEADERBOARD = 'LeaderBoard';
+const LEADERBOARD = 'leaderboard';
 const leaderBoardSchema = new Schema<ILeaderboard>({
     gameId: String,
     user: String,
