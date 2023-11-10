@@ -13,14 +13,14 @@ const leaderBoardSchema = new Schema<ILeaderboard>({
     bestScoreSeconds: Number,
     bestScorePoints: Number,
 }, {
-    methods: {
+    statics: {
         findUserScore(user: string) {
             return model(LEADERBOARD).findOne({ user });
         }
     }
 });
 
-const Leaderboard = model<ILeaderboard>(LEADERBOARD, leaderBoardSchema)
-const exported = mongoose.model(LEADERBOARD) ?? Leaderboard;
+const modelRegistry = model<ILeaderboard>(LEADERBOARD, leaderBoardSchema)
+const LeaderBoard = mongoose.model(LEADERBOARD) ?? modelRegistry;
 
-export default exported;
+export default LeaderBoard;

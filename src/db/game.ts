@@ -26,7 +26,7 @@ const gamesSchema = new Schema<IGames>({
     }
 });
 
-const Games = model<IGames>(GAMES, gamesSchema)
-const exported = mongoose.model(GAMES) ?? Games;
+const modelRegistry = model<IGames>(GAMES, gamesSchema)
+const Games = mongoose.model(GAMES) ?? modelRegistry;
 
-export default exported;
+export default Games;
