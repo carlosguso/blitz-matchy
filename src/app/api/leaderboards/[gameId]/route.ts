@@ -1,6 +1,5 @@
-import defaultGame from "@/apiCalls/gameData"
 import connectDB from "@/db"
-import Games from "@/db/game"
+import LeaderBoard from "@/db/leaderboard"
 
 export async function GET(
     request: Request,
@@ -9,12 +8,9 @@ export async function GET(
     const gameId = params.gameId
     try{
         await connectDB()
-        console.log("Connected: ", defaultGame)
-        const newGame = new Games({game: defaultGame});
-        await newGame.save()
-        return Response.json(newGame);
+        const userScores = await LeaderBoard.find({ gameId });
+        return Response.json(userScores);
     } catch (e) {
-        console.log("Error connecting: ", e)
+      return Response.json({"error": String(e)}, {status: 500})
     }
-    return Response.json({"val": gameId})
   }

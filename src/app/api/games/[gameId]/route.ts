@@ -1,5 +1,5 @@
 import connectDB from "@/db"
-
+import Games from "@/db/game"
 export async function GET(
     request: Request,
     { params }: { params: { gameId: string } }
