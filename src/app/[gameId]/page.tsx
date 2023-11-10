@@ -9,10 +9,9 @@ import { useGameStore } from '@/store';
 import { useEffect, useState } from 'react'
 
 let preLoadedImg = undefined;
-let stopWatch = null;
+let stopWatch: StopWatch|null = null;
 
 const preloadImg = (url: string) => {
-  console.log("Preloading: ", url)
   if (url) {
     const img = new window.Image();
     img.src = url;
@@ -83,7 +82,7 @@ export default function Home({ params }: { params: { gameId: string }}) {
   }
 
   useEffect(() => {
-    retrieveGame(params.gameId);
+    retrieveGame(params.gameId)
   }, [])
 
   useEffect(() => {
@@ -105,7 +104,14 @@ export default function Home({ params }: { params: { gameId: string }}) {
   }
 
   const renderCurrentOption = () => {
-    return game[currentQuestion] ? (<Question {...game[currentQuestion]} onAnswered={updateQuestionResults}/>) : <Results {...results}/>
+    const question = game[currentQuestion];
+    if (question) {
+      return (<Question {...game[currentQuestion]} onAnswered={updateQuestionResults}/>);
+    } else {
+      stopWatch?.stopTime();
+      return <Results {...results}/>
+    }
+    // return game[currentQuestion] ? (<Question {...game[currentQuestion]} onAnswered={updateQuestionResults}/>) : <Results {...results}/>
   }
 
   const startGame = (newUser: string) => {
