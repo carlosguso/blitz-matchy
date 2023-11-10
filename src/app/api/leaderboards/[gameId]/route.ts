@@ -18,7 +18,7 @@ export async function GET(
     const gameId = params.gameId
     try{
         await connectDB()
-        const userScores = await LeaderBoard.find({ gameId }).sort({ bestScoreSeconds: -1, bestScorePoints: -1 });
+        const userScores = await LeaderBoard.find({ gameId }).sort({ bestScoreSeconds: 1, bestScorePoints: -1 });
         if (userScores) 
           return Response.json(userScores.map((elem) => elem.toJSON()));
         return Response.json({"error": "Leaderbord not found"}, { status: 404})
