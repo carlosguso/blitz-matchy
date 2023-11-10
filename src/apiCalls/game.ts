@@ -9,7 +9,9 @@ export interface GameOption {
 }
 
 const getGame = async (gameId: string):Promise<GameOption[]> => {
-    const currentGame = defaultGame;
+    const res = await fetch(`/api/games/${gameId}`);
+    const game: GameOption[] = await res.json();
+    const currentGame = game;
     return shuffle(currentGame.map((gameItem) => {
         const shuffledOptions = shuffle(gameItem.options)
         return {...gameItem, options: shuffledOptions}
