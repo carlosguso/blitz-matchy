@@ -126,7 +126,7 @@ export default function Home() {
   }
 
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="relative flex min-h-screen flex-col items-center justify-between p-24 bg-gradient-to-r from-orange-600 to-orange-500">
       {time > 0 && <TimeDisplay time={time}/>}
       {user && <UserDisplay user={user}/>}
       {render()}
