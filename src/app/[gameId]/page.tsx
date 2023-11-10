@@ -77,7 +77,7 @@ export default function Home({ params }: { params: { gameId: string }}) {
       if (e instanceof Error) {
         errorMessage = e.message;
       }
-      console.log(errorMessage);
+      console.error('Error retrieving the game: ', errorMessage);
     }
   }
 
