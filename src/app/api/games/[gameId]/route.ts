@@ -8,7 +8,10 @@ export async function GET(
       const gameId = params.gameId
       connectDB()
       const game = await Games.findById(gameId)
-      return Response.json(game)
+      if (game) {
+        return Response.json(game.game)
+      }
+      return Response.json({"error": "Game not found"}, {status: 404})
     } catch (e) {
       return Response.json({"error": String(e)}, {status: 500})
     }

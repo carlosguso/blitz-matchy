@@ -26,7 +26,10 @@ const gamesSchema = new Schema<IGames>({
     }
 });
 
-const modelRegistry = model<IGames>(GAMES, gamesSchema)
-const Games = mongoose.model(GAMES) ?? modelRegistry;
+const GamesModel = () => mongoose.model<IGames>(GAMES, gamesSchema)
+
+const Games = (mongoose.models.games || GamesModel()) as ReturnType<
+  typeof GamesModel
+>
 
 export default Games;
