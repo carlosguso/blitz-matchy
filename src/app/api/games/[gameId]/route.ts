@@ -5,6 +5,7 @@ export async function GET(
     { params }: { params: { gameId: string } }
   ) {
     try {
+      console.log('Hi logs')
       const gameId = params.gameId
       connectDB()
       const game = await Games.findById(gameId)
