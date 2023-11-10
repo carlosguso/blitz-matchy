@@ -20,6 +20,7 @@ const leaderBoardSchema = new Schema<ILeaderboard>({
     }
 });
 
-const Leaderboard = (mongoose.model as any).Leaderboard ?? model<ILeaderboard>(LEADERBOARD, leaderBoardSchema)
+const Leaderboard = model<ILeaderboard>(LEADERBOARD, leaderBoardSchema)
+const exported = mongoose.model(LEADERBOARD) ?? Leaderboard;
 
-export default Leaderboard;
+export default exported;
