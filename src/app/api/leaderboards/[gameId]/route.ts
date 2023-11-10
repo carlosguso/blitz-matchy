@@ -1,5 +1,15 @@
 import connectDB from "@/db"
+import Games from "@/db/game";
 import LeaderBoard from "@/db/leaderboard"
+import { z } from 'zod'
+
+const getPostSchema = () => {
+  return z.object({
+    user: z.string(),
+    bestScoreSeconds: z.number(),
+    bestScorePoints: z.number(),
+  })
+};
 
 export async function GET(
     request: Request,
@@ -9,7 +19,9 @@ export async function GET(
     try{
         await connectDB()
         const userScores = await LeaderBoard.find({ gameId });
-        return Response.json(userScores);
+        if (userScores) 
+          return Response.json(userScores);
+        return Response.json({"error": "Leaderbord not found"}, { status: 404})
     } catch (e) {
       return Response.json({"error": String(e)}, {status: 500})
     }
@@ -21,28 +33,40 @@ export async function POST(
 ) {
   try {
     const gameId = params.gameId
-    const body: {
-      user: string;
-      bestScoreSeconds: number;
-      bestScorePoints: number;
-    } = await request.json();
+    const body = await request.json();
+    const validate = getPostSchema();
+    const validBody = validate.safeParse(body);
+    if (!validBody.success) {
+      const { errors } = validBody.error;
+      return Response.json({"error": errors}, {status: 400})
+    }
+    const { user, bestScoreSeconds, bestScorePoints } = validBody.data;
 
     connectDB();
-    const userScore = await LeaderBoard.findOne({ gameId, user: body.user })
+    const game = await Games.findById(gameId);
+    if (!game) 
+      return Response.json({"error": "Game Not Found"}, {status: 404})
+
+    const userScore = await LeaderBoard.findOne({ gameId: game.id, user })
     if (userScore) {
-      if (body.bestScorePoints > userScore.bestScorePoints) {
+      const hasNewBestScorePoints = bestScorePoints > userScore.bestScorePoints;
+      const hasNewBestScoreSeconds = bestScoreSeconds > userScore.bestScoreSeconds;
+
+      if (hasNewBestScorePoints) {
         userScore.bestScorePoints = body.bestScorePoints;
       }
 
-      if (body.bestScoreSeconds > userScore.bestScoreSeconds){
-        userScore.bestScoreSeconds = body.bestScoreSeconds;
+      if (hasNewBestScoreSeconds){
+        userScore.bestScoreSeconds = bestScoreSeconds;
       }
 
-      await userScore.save()
+      if (hasNewBestScorePoints || hasNewBestScoreSeconds)
+        await userScore.save()
+
       return Response.json({userScore})
     }
-    
-    const newUserScore = new LeaderBoard({...body, gameId})
+
+    const newUserScore = new LeaderBoard({ user, bestScorePoints, bestScoreSeconds, gameId})
     await newUserScore.save()
     return Response.json(newUserScore)
   } catch (e) {
