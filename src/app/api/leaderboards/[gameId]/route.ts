@@ -18,7 +18,7 @@ export async function GET(
     const gameId = params.gameId
     try{
         await connectDB()
-        const userScores = await LeaderBoard.find({ gameId });
+        const userScores = await LeaderBoard.find({ gameId }).sort({ bestScoreSeconds: -1, bestScorePoints: -1 });
         if (userScores) 
           return Response.json(userScores.map((elem) => elem.toJSON()));
         return Response.json({"error": "Leaderbord not found"}, { status: 404})
@@ -50,7 +50,7 @@ export async function POST(
     const userScore = await LeaderBoard.findOne({ gameId: game.id, user })
     if (userScore) {
       const hasNewBestScorePoints = bestScorePoints > userScore.bestScorePoints;
-      const hasNewBestScoreSeconds = bestScoreSeconds > userScore.bestScoreSeconds;
+      const hasNewBestScoreSeconds = bestScoreSeconds < userScore.bestScoreSeconds;
 
       if (hasNewBestScorePoints) {
         userScore.bestScorePoints = body.bestScorePoints;
