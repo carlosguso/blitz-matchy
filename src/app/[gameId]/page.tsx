@@ -109,9 +109,8 @@ export default function Home({ params }: { params: { gameId: string }}) {
       return (<Question {...game[currentQuestion]} onAnswered={updateQuestionResults}/>);
     } else {
       stopWatch?.stopTime();
-      return <Results {...results}/>
+      return <Results {...results} gameId={params.gameId} time={time}/>
     }
-    // return game[currentQuestion] ? (<Question {...game[currentQuestion]} onAnswered={updateQuestionResults}/>) : <Results {...results}/>
   }
 
   const startGame = (newUser: string) => {
